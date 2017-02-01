@@ -9,7 +9,7 @@ class SignUpForm extends React.Component {
             username: '',
             email: '',
             password: '',
-            passwordconfirmation: '',
+            passwordConfirmation: '',
             timezone: ''
         };
         this.onChange = this.onChange.bind(this);
@@ -24,9 +24,8 @@ class SignUpForm extends React.Component {
 
     onSubmit(e) {
         e.preventDefault();
-        console.log(this.state);
+        this.props.userSignUpRequest(this.state);
     }
-
     render() {
         const options = map(timezones, (value, key) =>
             <option key={value} value={value}>{key}</option>
@@ -53,7 +52,7 @@ class SignUpForm extends React.Component {
 
                 <div className="form-group">
                     <label className="control-label">Password Confirmation</label>
-                    <input type="text" onChange={this.onChange} value={this.state.passwordconfirmation} className="form-control" name="passwordConfirmation"/>
+                    <input type="text" onChange={this.onChange} value={this.state.passwordConfirmation} className="form-control" name="passwordConfirmation"/>
                 </div>
 
                 <div className="form-group">
@@ -71,5 +70,9 @@ class SignUpForm extends React.Component {
         );
     }
 }
+
+SignUpForm.propTypes = {
+    userSignUpRequest: React.PropTypes.func.isRequired
+};
 
 export default SignUpForm;
