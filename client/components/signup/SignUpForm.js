@@ -44,6 +44,11 @@ class SignUpForm extends React.Component {
             this.setState({errors: {}, isLoading: true});
             this.props.userSignUpRequest(this.state).then(
                 () => {
+                    //action return
+                    this.props.addFlashMessage({
+                        type:'success',
+                        text:'You signed up successfully.'
+                    });
                     // browserHistory.push('/'); //if input is valid, redirect!
                     this.context.router.push('/');
                 },
@@ -108,7 +113,8 @@ class SignUpForm extends React.Component {
 }
 
 SignUpForm.propTypes = {
-    userSignUpRequest: React.PropTypes.func.isRequired
+    userSignUpRequest: React.PropTypes.func.isRequired,
+    addFlashMessage: React.PropTypes.func.isRequired
 };
 
 SignUpForm.contextTypes= {
